@@ -87,7 +87,7 @@ export default function Header() {
                 {/* 1- Logo */}
                 <div className="flex items-center justify-between w-full md:w-auto">
                     <Link href="/" className="flex flex-col items-center">
-                        <span className="font-bold text-2xl md:text-xl lg:text-3xl text-yellow-400">Rise of Coding</span>
+                        <span className="font-bold text-2xl md:text-xl lg:text-3xl text-yellow-400">Movies App</span>
                         <span className="text-xs lg:text-base text-white">Movies and TV Series</span>
                     </Link>
 
