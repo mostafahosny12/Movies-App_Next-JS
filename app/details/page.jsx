@@ -4,7 +4,7 @@ import Card from "@/components/Card";
 import TrailerModal from "@/components/TrailerModal";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import useSWR from "swr";
 // create a helper fetcher function for useSwr
 const fetcher = (url) =>
@@ -13,7 +13,7 @@ const fetcher = (url) =>
         return res.json();
     });
 
-export default function DetailsPage() {
+function DetailsContent() {
     // get url parameters (id and media_type)
     const searchParams = useSearchParams();
     const id = searchParams.get('id');
@@ -167,5 +167,13 @@ export default function DetailsPage() {
             {/* trailer modal */}
             <TrailerModal isOpen={isModalOpen} onClose={closeModal} trailerUrl={trailerUrl} title={getTitle()} />
         </div>
+    );
+}
+
+export default function DetailsPage() {
+    return (
+        <Suspense fallback={<div className="text-white text-center mt-10">Loading details...</div>}>
+            <DetailsContent />
+        </Suspense>
     );
 }

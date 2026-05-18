@@ -3,7 +3,7 @@
 import MediaDisplay from "@/components/MediaDisplay";
 import Pagination from "@/components/Pagination";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, Suspense } from "react";
 import FilterSection from "@/components/FilterSection";
 
 import useSWR from "swr";
@@ -24,7 +24,7 @@ const yearRanges = {
   "1990-1999": { gte: "1990-01-01", lte: "1999-12-31" },
 };
 
-export default function MoviesPage() {
+function MoviesContent() {
   const router = useRouter(); // to change the page url when the pagination happens
   const pathname = usePathname(); // to get the current page path
   const searchParams = useSearchParams(); //to read the current url query (like: ?page=2)
@@ -137,5 +137,17 @@ export default function MoviesPage() {
         />
       )}
     </div>
+  );
+}
+
+export default function MoviesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="text-white text-center mt-10">Loading movies...</div>
+      }
+    >
+      <MoviesContent />
+    </Suspense>
   );
 }
