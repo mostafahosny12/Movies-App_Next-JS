@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-<<<<<<< HEAD
   // This is to allow loading images from TMDB
   images: {
     remotePatterns: [
@@ -12,9 +11,7 @@ const nextConfig = {
     ],
     qualities: [75, 90],
   },
-=======
   /* config options here */
->>>>>>> 77a0381 (Initial commit from Create Next App)
 };
 
 export default nextConfig;
